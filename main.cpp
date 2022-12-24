@@ -15,7 +15,7 @@ void PrintAverage() {
     auto t_size = t.size(); // unsigned long
 
     // int avg = sum / t_size; // использование знакового и безнакового типов
-    int avg = sum / t_size; // использование знакового и безнакового типов
+    int avg = sum / static_cast<int>(t_size); // преобразовал в беззнаковый в знаковый
 
     cout << avg << endl; // 1431655761 при равенстве vector<int> t = {-8, -7, 3};
 }
@@ -45,7 +45,7 @@ int main() {
     cout << (-1 < 1u) << endl;
 
     vector<int> v = {4, 5};
-    
+
     for (int i = 0; i < v.size(); ++i) { // int i будет вызывать некоторые проблемы при сравнении (signed/unsigned comparison)
         cout << i << " " << v[i] << endl;
     }
