@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main() {
+void PrintAverage() {
     vector<int> t = {8, 7, 3};
 
     int sum = 0;
@@ -14,9 +14,13 @@ int main() {
 
     auto t_size = t.size(); // unsigned long
 
+    // int avg = sum / t_size; // использование знакового и безнакового типов
     int avg = sum / t_size; // использование знакового и безнакового типов
-    cout << avg << endl; // 1431655761 при равенстве vector<int> t = {-8, -7, 3};
 
+    cout << avg << endl; // 1431655761 при равенстве vector<int> t = {-8, -7, 3};
+}
+
+int main() {
     int x = 2'000'000'000;
     cout << x << " " << endl;
     x *= 2; // -294967296 не поместилось
@@ -33,7 +37,26 @@ int main() {
     cout << numeric_limits<int>::min() + 1 << " " <<
         numeric_limits<int>::max() -1 << endl; // получим максимум потом минимум
 
+    int y = -1;
+    unsigned z = 1;
+
+    cout << (y < z) << endl;
+
+    cout << (-1 < 1u) << endl;
+
+    vector<int> v = {4, 5};
     
+    for (int i = 0; i < v.size(); ++i) { // int i будет вызывать некоторые проблемы при сравнении (signed/unsigned comparison)
+        cout << i << " " << v[i] << endl;
+    }
+
+    for (size_t i = 0; i < v.size(); ++i) { // 1 способ решения: используем size_t
+        cout << i << " " << v[i] << endl;
+    }
+
+    for (int i = 0; i < static_cast<int>(v.size()); ++i) { // 2 способ решения, явно преобразовываем v.size() к знаковому типу
+        cout << i << " " << v[i] << endl;
+    }
 
     return 0;
 }
